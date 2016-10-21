@@ -4,14 +4,23 @@ from Information import *
 
 class PriorityQueue:
 
-    Queue = None
+    queue = None
+    length = None
 
+    # default constructor
     def __init__(self):
-        self.Queue = []
+        self.queue = []
+        self.length = 0
 
-    def push(self, other):
-        self.Queue.append(other)
+    # add a information object to the queue
+    def add(self, other):
+        self.queue.append(other)
+        self.length += 1
 
+    # pop off an object from the queue
     def pop(self):
-        return self.Queue.pop(0)
+        self.length -= 1
+        return self.queue.pop(0)
 
+    def get_item_index(self, number):
+        return self.queue[number]
