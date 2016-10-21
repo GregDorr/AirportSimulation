@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from time import sleep
 from PriorityQueue import PriorityQueue
 from Information import Information
 
@@ -12,9 +13,9 @@ def readFile():
 
     while var:
         try:
+            sleep(1)
             test = fo.next().split(",")
         except StopIteration:
-            var = 0
             print("end of file")
             break
         else:
@@ -22,17 +23,20 @@ def readFile():
             subTime = test[1].strip()
             reqStart = test[2].strip()
             reqDuration = test[3].strip()
-            print(id)
-            print(subTime)
-            print(reqStart)
-            print(reqDuration)
-            Queue.push(Information(id, subTime, reqStart, reqDuration))
-
+            Queue.add(Information(id, subTime, reqStart, reqDuration))
     fo.close()
     return
 
 
+# displaying the queue at each time
+def display_queue(queue):
+    time = 0
+    while queue.length != 0:
+        print(Queue.pop())
+        sleep(1)
+        time += 1
+
 readFile()
-print(Queue.pop())
-print(Queue.pop())
-print(Queue.pop())
+
+display_queue(Queue)
+
